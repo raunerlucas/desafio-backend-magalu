@@ -21,10 +21,10 @@ public class Status implements Serializable {
     private String description;
 
     public enum Values {
-        EMAIL(1L, "Pending"),
-        SMS(2L, "Success"),
-        PUSH(3L, "Error"),
-        WHATSAPP(4L, "Canceled");
+        PENDING(1L, "Pending"),
+        SUCCESS(2L, "Success"),
+        ERROR(3L, "Error"),
+        CANCELED(4L, "Canceled");
 
         private final Long id;
         private final String description;
