@@ -18,4 +18,24 @@ public class Channel implements Serializable {
     private Long id;
 
     private String description;
+
+    public enum Values {
+        EMAIL(1L, "Email"),
+        SMS(2L, "SMS"),
+        PUSH(3L, "Push"),
+        WHATSAPP(4L, "WhatsApp");
+
+        private final Long id;
+        private final String description;
+
+        Values(Long id, String description) {
+            this.id = id;
+            this.description = description;
+        }
+
+        public Channel toChannel() {
+            return new Channel(id, description);
+        }
+    }
+
 }
