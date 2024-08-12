@@ -8,3 +8,14 @@ services:
       - 'POSTGRES_USER=admin'
     ports:
       - '5432:5432'
+
+  desafio-magalu:
+    container_name: 'desafio-magalu-container'
+    image: 'desafio-magalu:latest'
+    build: .
+    ports:
+      - '8080:8080'
+    depends_on:
+      - postgres
+    environment:
+      - 'DATABASE_URL=postgres://admin:123@postgres:5432/magalubd'
