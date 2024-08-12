@@ -28,4 +28,11 @@ public class NotificationsController {
         return notificationsService.getNotification(id)
          .map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> cancelNotification(@PathVariable Long id) {
+        notificationsService.cancelNotification(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

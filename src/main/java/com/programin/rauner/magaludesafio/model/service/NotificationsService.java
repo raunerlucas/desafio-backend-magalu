@@ -2,6 +2,7 @@ package com.programin.rauner.magaludesafio.model.service;
 
 import com.programin.rauner.magaludesafio.controller.DTO.ScheduleNotificationsDto;
 import com.programin.rauner.magaludesafio.model.entity.Notifications;
+import com.programin.rauner.magaludesafio.model.entity.Status;
 import com.programin.rauner.magaludesafio.model.repository.NotificationsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,14 @@ public class NotificationsService {
 
     public Optional<Notifications> getNotification(Long id) {
         return notificationsRepository.findById(id);
+    }
+
+    public void cancelNotification(Long id) {
+        Optional<Notifications> notification = getNotification(id);
+        if (notification.isPresent()) {
+            notification.get().setStatus(Status.Values.CANCELED.toStatus());
+            notificationsRepository.save(notification.get());
+        }
+
     }
 }
