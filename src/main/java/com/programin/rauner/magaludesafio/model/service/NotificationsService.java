@@ -7,7 +7,10 @@ import com.programin.rauner.magaludesafio.model.repository.NotificationsReposito
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 @Service
 public class NotificationsService {
@@ -33,6 +36,22 @@ public class NotificationsService {
             notification.get().setStatus(Status.Values.CANCELED.toStatus());
             notificationsRepository.save(notification.get());
         }
+    }
 
+    public void checkAndSend(LocalDateTime dateTime){
+        List<Notifications> notifications = notificationsRepository.findByStatusInAndDateTimeBefore(List.of(
+                        Status.Values.PENDING.toStatus(), Status.Values.ERROR.toStatus()), dateTime);
+
+        notifications.forEach(sendNotification());
+    }
+
+    private Consumer<Notifications> sendNotification() {
+        return n -> {
+            // TODO: Realizar o envio.
+
+            // TODO: Atualiza o Status.
+            n.setStatus(Status.Values.SUCCESS.toStatus());
+            notificationsRepository.save(n);
+        };
     }
 }
