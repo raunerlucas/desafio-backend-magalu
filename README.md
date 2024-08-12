@@ -62,7 +62,3 @@ Rauner Lucas: [https://raunerlu.bio.link/](https://raunerlu.bio.link/)
 ## Agradecimentos
 
 O desenvolvimento deste projeto teve como referência o vídeo "[Resolvendo DESAFIO BACKEND da Magalu com Spring Boot](https://www.youtube.com/watch?v=af4W9Q4vB1s)" do canal Build & Run.
-
-## Licença
-
-MIT 
